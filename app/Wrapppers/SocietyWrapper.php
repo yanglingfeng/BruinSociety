@@ -3,12 +3,33 @@
     class SocietyWrapper
     {
 
-        public function joinSociety($user_id, $society_id) {
-
+static public function joinSociety($user_id, $society_id) {
+            $query = DB::table('user_society')
+                ->where('user_id', $user_id)
+                ->where('society_id', $society_id)
+                ->get();
+            
+            if(!$query)
+            {
+                DB::table('user_society')->insert(
+                    ['user_id' => $user_id, 'society_id' => $society_id]
+                );  
+            }
         }
 
-        public function quitSociety($user_id, $society_id) {
+static public function quitSociety($user_id, $society_id) {
+            $query = DB::table('user_society')
+                ->where('user_id', $user_id)
+                ->where('society_id', $society_id)
+                ->get();
             
+            if($query)
+            {
+                DB::table('user_society')
+                    ->where('user_id', $user_id)
+                    ->where('society_id', $society_id)
+                    ->delete();
+            }
         }
 
         /**
@@ -16,12 +37,25 @@
         * @param int $user_id
         * @return table a database table containing the societies the user is in
         */
-        public function getSocietiesForUser($user_id) 
+
+static public function getSocietiesForUser($user_id) 
         {
-            
+            $societyids = DB::table('user_society')
+                            ->where('user_id', $user_id)
+                            ->get();
+
+            if($societyids)
+            {
+                foreach($societyids as $id)
+                {
+                    $query2 = DB::table('societies')
+                        ->where('id', $id)
+                        ->pluck('name');
+                }
+            }
         }
 
-        public function getAllSocieties() {
+static public function getAllSocieties() {
 
         }
 
