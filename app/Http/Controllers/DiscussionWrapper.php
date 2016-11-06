@@ -31,6 +31,10 @@
             return $discussions;
         }
 
-        
+        static public function getAllSocietyDicussion($society_id)
+        {
+            $discussion = App\Discussion::where('society_id', $society_id)->get();
+            return $discussions;
+        }
 
     }
