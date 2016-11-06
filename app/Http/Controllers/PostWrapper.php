@@ -75,10 +75,17 @@
             return $posts;
         }
 
-        //Need to find out
-        static public function sortPostByTimeStap()
+        //These will return all posts belonging to a disc, sorted by creation date
+        static public function sortSocPostByNewest($discussion_id)
         {
+            $posts = App\Post::where('discussion_id', $discussion_id)->orderBy('created_at', 'desc')->get();
+            return $posts;
+        }
 
+        static public function sortSocPostByOldest($discussion_id)
+        {
+            $posts = App\Post::where('discussion_id', $discussion_id)->orderBy('created_at', 'asc')->get();
+            return $posts;
         }
 
     }
