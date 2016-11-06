@@ -11,11 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'SocietyController@listUserSocieties');
 
-Route::get('/', 'ListController@show');
+//Route::get('/', 'ListController@show');
 
 Route::get('/password', 'ListController@showUserInfo');
 
@@ -32,3 +30,9 @@ Route::get('/got', [
 }]);
 
 Route::get('lout', 'LogOutController@logOut');
+
+Route::get('join', 'SocietyController@join');
+
+Route::get('quit', 'SocietyController@quit');
+
+Route::get('listSocieties', 'SocietyController@listAllSocieties');
