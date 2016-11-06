@@ -35,10 +35,36 @@
             return $posts;
         }
 
-        static public function getAllPosts()
+        static public function getAllPost()
         {
-            $discussions = App\Post::all();
-            return $discussions;
-        }  
+            $posts = App\Post::all();
+            return $posts;
+        }
+
+        //This will return all posts sorted by title, will probably only be used for testing
+        static public function sortPostByTitle()
+        {
+            $posts = App\Post::orderBy('title')->get();
+            return $posts;
+        }
+
+        //This will return all posts belonging to a society, sorted by title
+        static public function sortPostByTitleAsc($society_id)
+        {
+            $posts = App\Post::where('society_id', $society_id)->orderBy('title', 'asc')->get();
+            return $posts;
+        }
+
+        static public function sortPostByTitleDesc($society_id)
+        {
+            $posts = App\Post::where('society_id', $society_id)->orderBy('title', 'desc')->get();
+            return $posts;
+        }
+
+        //Need to find out
+        static public function sortPostByTimeStap()
+        {
+
+        }
 
     }
