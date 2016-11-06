@@ -37,6 +37,20 @@
             }
         }
 
+        static public function createSociety($name, $catagory)
+        {
+            $society = new Society();
+            $society->name = $name;
+            $society->catagory = $catagory;
+            $society->save();
+        }
+
+        static public function deleteSociety()
+        {
+
+        }
+
+
         /**
         * This function returns a table with all the societies a user is in.
         * @param int $user_id

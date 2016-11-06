@@ -19,7 +19,6 @@ class SocietyController extends Controller
         $society_id = $request->input('society_id');
         \SocietyWrapper::joinSociety($user_id, $society_id);
         return response()->json(['name'=>'Hi']);
-
     }
 
     // Quit a society
@@ -28,6 +27,17 @@ class SocietyController extends Controller
         $user_id = Auth::id();
         $society_id = $request->input('society_id');
         \SocietyWrapper::quitSociety($user_id, $society_id);
+    }
+
+    public function createSociety(Request $request) {
+        $name = $request->input('name');
+        $catagory = $request->input('catagory');
+        \SocietyWrapper::createSociety($name, $catagory);
+
+    }
+
+    public function deleteSociety(Request $request) {
+
     }
 
     public function listAllSocieties() {
