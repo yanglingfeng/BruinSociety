@@ -3,7 +3,7 @@
     use App\Post;
 
     // This class wraps up the posts table by providing different methods of accessing the table.
-    class SocietyWrapper
+    class PostWrapper
     {
 
         static public function createPost($title, $content, $has_link, $link, $society_id, $discussion_id)

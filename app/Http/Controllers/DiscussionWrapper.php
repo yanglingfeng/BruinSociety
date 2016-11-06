@@ -3,7 +3,7 @@
     use App\Discussion;
 
     // This class wraps up the discussions table by providing different methods of accessing the table.
-    class SocietyWrapper
+    class DiscussionWrapper
     {
 
         static public function createDiscussion($name, $society_id)
