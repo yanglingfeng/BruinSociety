@@ -5,11 +5,11 @@
     // This class wraps up the discussions table by providing different methods of accessing the table.
     class DiscussionWrapper
     {
-
-        static public function createDiscussion($name, $society_id)
+        //Quarter: 1 = Winter, 2 = Spring, 3 = Summer, 4 = Fall
+        static public function createDiscussion($quarter, $society_id, $year)
         {
                 DB::table('discussions')->insert(
-                    ['name' => $name, 'society_id' => $society_id]
+                    ['quarter' => $quarter, 'society_id' => $society_id, 'year' => $year]
                 );  
         }
 
@@ -33,8 +33,21 @@
 
         static public function getAllSocietyDicussion($society_id)
         {
-            $discussion = App\Discussion::where('society_id', $society_id)->get();
-            return $discussion;
+            $discussions = App\Discussion::where('society_id', $society_id)->get();
+            return $discussions;
         }
 
+        static public function sortSocDiscByYearOldest($society_id)
+        {
+            $discussions = App\Discussion::where('society_id', $societyid)->orderBy('year', 'asc')
+                            ->orderBy('quarter','asc')->get();
+            return $discussions;
+        }
+
+        static public function sortSocDiscByYearNewest($society_id)
+        {
+            $discussions = App\Discussion::where('society_id', $societyid)->orderBy('year', 'desc')
+                            ->orderBy('quarter','desc')->get();
+            return $discussions;
+        }
     }
