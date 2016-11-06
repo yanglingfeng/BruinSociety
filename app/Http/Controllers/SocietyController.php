@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 require_once ('SocietyWrapper.php');
+
 class SocietyController extends Controller
 {
     // Join a society
