@@ -13,9 +13,8 @@
 
                           <tr>
                           
-                              <td>{{$email}}</td> <td>{{$password}}</td>
+                              <td>{{$email}}</td> <td>{{$password}}</td> <td>{{$my_year}} </td>
                             </tr>
-
                       </table>
                     @endif
 

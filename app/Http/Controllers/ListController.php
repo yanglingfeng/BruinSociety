@@ -32,6 +32,7 @@ class ListController extends Controller
       $user = Auth::user();
       $my_password = $user->password;
       $my_email = $user->email;
-      return view('password', ['password'=>$my_password, 'email'=>$my_email]);
+      $my_year = $user->university_year;
+      return view('password', ['password'=>$my_password, 'email'=>$my_email,'my_year'=>$my_year]);
     }
 }

@@ -19,6 +19,8 @@ Route::get('/', 'ListController@show');
 
 Route::get('/password', 'ListController@showUserInfo');
 
+
+// /login for login /lout for logging out /register for registering
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

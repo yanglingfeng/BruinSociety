@@ -16,6 +16,7 @@
                           </tr>
                           @foreach($characters as $key => $value)
                             <tr>
+
                               <td>{{$key}}</td><td>{{$value}}</td>
                             </tr>
                           @endforeach
