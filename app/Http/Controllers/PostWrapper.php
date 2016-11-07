@@ -50,41 +50,30 @@
 
         //These will return all posts belonging to a society, sorted by title
         //These might also not be used depending on our implementation decision
-        static public function sortSocPostByTitleAsc($society_id)
+        static public function sortSocPostByTitleAsc($society_id, $ascdesc)
         {
-            $posts = App\Post::where('society_id', $society_id)->orderBy('title', 'asc')->get();
-            return $posts;
-        }
-
-        static public function sortSocPostByTitleDesc($society_id)
-        {
-            $posts = App\Post::where('society_id', $society_id)->orderBy('title', 'desc')->get();
+            $posts = App\Post::where('society_id', $society_id)->orderBy('title', $ascdesc)->get();
             return $posts;
         }
 
         //These will return all posts belonging to a disc, sorted by title
-        static public function sortDiscPostByTitleAsc($discussion_id)
+        static public function sortDiscPostByTitleAsc($discussion_id, $ascdesc)
         {
-            $posts = App\Post::where('discussion_id', $discussion_id)->orderBy('title', 'asc')->get();
+            $posts = App\Post::where('discussion_id', $discussion_id)->orderBy('title', $ascdesc)->get();
             return $posts;
         }
 
-        static public function sortDiscPostByTitleDesc($discussion_id)
+        //These will return all posts belonging to a disc, sorted by update time
+        static public function sortDiscPostByUpdateTime($discussion_id, $ascdesc)
         {
-            $posts = App\Post::where('discussion_id', $discussion_id)->orderBy('title', 'desc')->get();
+            $posts = App\Post::where('discussion_id', $discussion_id)->orderBy('updated_at', $ascdesc)->get();
             return $posts;
         }
 
-        //These will return all posts belonging to a disc, sorted by creation date
-        static public function sortSocPostByNewest($discussion_id)
+        //These will return all posts belonging to a disc, sorted by creation time
+        static public function sortSocPostByCreateTime($discussion_id, $ascdesc)
         {
-            $posts = App\Post::where('discussion_id', $discussion_id)->orderBy('created_at', 'desc')->get();
-            return $posts;
-        }
-
-        static public function sortSocPostByOldest($discussion_id)
-        {
-            $posts = App\Post::where('discussion_id', $discussion_id)->orderBy('created_at', 'asc')->get();
+            $posts = App\Post::where('discussion_id', $discussion_id)->orderBy('created_at', $ascdesc)->get();
             return $posts;
         }
     }

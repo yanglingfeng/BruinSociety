@@ -39,21 +39,16 @@
             return $discussions;
         }
 
-        static public function getNewestDiscussion($society_id) {
-
+        static public function getNewestSocDiscussion($society_id) {
+            $discussion = App\Discussion::where('society_id', $societyid)->orderBy('year', 'desc')
+                            ->orderBy('quarter','desc')->first();
+            return $discussion;
         }
 
-        static public function sortSocDiscByYearOldest($society_id)
+        static public function sortSocDiscussion($society_id, $ascdesc)
         {
-            $discussions = App\Discussion::where('society_id', $societyid)->orderBy('year', 'asc')
-                            ->orderBy('quarter','asc')->get();
-            return $discussions;
-        }
-
-        static public function sortSocDiscByYearNewest($society_id)
-        {
-            $discussions = App\Discussion::where('society_id', $societyid)->orderBy('year', 'desc')
-                            ->orderBy('quarter','desc')->get();
+            $discussions = App\Discussion::where('society_id', $societyid)->orderBy('year', $ascdesc)
+                            ->orderBy('quarter', $ascdesc)->get();
             return $discussions;
         }
     }
