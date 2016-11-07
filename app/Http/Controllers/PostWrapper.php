@@ -5,7 +5,7 @@
     // This class wraps up the posts table by providing different methods of accessing the table.
     class PostWrapper
     {
-
+        //This function is used to create a post in a discussion
         static public function createPost($title, $content, $has_link, $link, $society_id, $discussion_id)
         {
                 DB::table('posts')->insert(
@@ -14,34 +14,39 @@
                 );  
         }
 
+        //This function returns a post from its id
         static public function getPostFromId($post_id)
         {
             $post = App\Post::where('post_id', $post_id)->first();
             return $post;
         }
 
+        //This function returns all posts belonging to a society
         static private function getPostFromSociety($society_id) {
             $posts = App\Post::where('society_id', $society_id)->get();
             return $posts;
         }
 
+        //This function returns all posts belonging to a discussion
         static private function getPostFromDiscussion($discussion_id) {
             $posts = App\Post::where('discussion_id', $discussion_id)->get();
             return $posts;
         }
 
+        //This function returns all posts with inserted title
         static private function getPostFromTitle($title) {
             $posts = App\Post::where('title', $title)->get();
             return $posts;
         }
 
+        //This function return all posts in the database
         static public function getAllPost()
         {
             $posts = App\Post::all();
             return $posts;
         }
 
-        //This will return all posts sorted by title, will probably only be used for testing
+        //This will return all posts sorted by title
         static public function sortPostByTitle()
         {
             $posts = App\Post::orderBy('title')->get();
@@ -49,7 +54,6 @@
         }
 
         //These will return all posts belonging to a society, sorted by title
-        //These might also not be used depending on our implementation decision
         static public function sortSocPostByTitleAsc($society_id, $ascdesc)
         {
             $posts = App\Post::where('society_id', $society_id)->orderBy('title', $ascdesc)->get();

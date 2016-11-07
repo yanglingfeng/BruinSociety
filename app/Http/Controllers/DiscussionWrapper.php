@@ -15,36 +15,35 @@
                 );  
         }
 
-        //What is name for??? I am assuming each society only has one discussion
+        //This function returns the society id a discussion belongs to
         static public function getSocietiesOfDiscussion($id)
         {
             $societyid = App\Discussion::select('society_id')->where('id', $id)->first();
             return $societyid;
         }
 
-        static private function getDiscussionName($id) {
-            $discussionname = App\Discussion::select('name')->where('id', $id)->first();
-            return $discussionname;
-        }
-
+        //This function returns all the discussions in the database
         static public function getAllDiscussion()
         {
             $discussions = App\Discussion::all();
             return $discussions;
         }
 
+        //This function returns all the discussions belonging to a society
         static public function getAllSocietyDicussion($society_id)
         {
             $discussions = App\Discussion::where('society_id', $society_id)->get();
             return $discussions;
         }
 
+        //This function returns the newest discussion infos
         static public function getNewestSocDiscussion($society_id) {
             $discussion = App\Discussion::where('society_id', $societyid)->orderBy('year', 'desc')
                             ->orderBy('quarter','desc')->first();
             return $discussion;
         }
 
+        //This function returns the discussion sorted by year and quarter
         static public function sortSocDiscussion($society_id, $ascdesc)
         {
             $discussions = App\Discussion::where('society_id', $societyid)->orderBy('year', $ascdesc)
