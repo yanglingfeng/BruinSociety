@@ -37,6 +37,9 @@ Route::get('/got', [
    echo "You are allowed to view this page!";
 }]);
 
+/**
+ * The following routes are related to join/ delete/ listing societies.
+ */
 
 Route::get('join', 'SocietyController@join');
 
@@ -45,5 +48,17 @@ Route::get('quit', 'SocietyController@quit');
 Route::get('listSocieties', 'SocietyController@listAllSocieties');
 
 // TODO: change to post later
-Route::get('createSociety', 'SocietyController@createSociety');
+Route::get('create', 'SocietyController@createSociety');
 
+Route::get('delete', 'SocietyController@deleteSociety');
+
+// Returns the view for the form of creating a societyk
+Route::get('createSociety', function () {
+    return view('createForm');
+});
+
+/**
+ * The folllowing routes are related to showing discussions of a society.
+ */
+
+Route::get('showDiscussions', 'DiscussionController@show');

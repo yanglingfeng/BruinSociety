@@ -38,7 +38,9 @@ class SocietyController extends Controller
     }
 
     public function deleteSociety(Request $request) {
-
+        $id = $request->input('id');
+        \SocietyWrapper::deleteSociety($id);
+        return response()->json('deleted!');
     }
 
     // PHP is so shitty!!!

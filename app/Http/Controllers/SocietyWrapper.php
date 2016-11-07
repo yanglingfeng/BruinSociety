@@ -46,9 +46,9 @@
             return $society;
         }
 
-        static public function deleteSociety()
+        static public function deleteSociety($id)
         {
-
+            App\Society::destroy($id);
         }
 
 

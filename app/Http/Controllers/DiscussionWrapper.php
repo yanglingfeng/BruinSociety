@@ -2,6 +2,8 @@
 
     use App\Discussion;
 
+    // TODO: add a getNewestDiscussion function
+
     // This class wraps up the discussions table by providing different methods of accessing the table.
     class DiscussionWrapper
     {
@@ -35,6 +37,10 @@
         {
             $discussions = App\Discussion::where('society_id', $society_id)->get();
             return $discussions;
+        }
+
+        static public function getNewestDiscussion($society_id) {
+
         }
 
         static public function sortSocDiscByYearOldest($society_id)
