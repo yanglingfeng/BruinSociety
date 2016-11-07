@@ -98,6 +98,11 @@
             return $societies;
         }
 
+        static public function getSocietyFromId($society_id) {
+            $society = DB::table('societies')->where('id', $society_id)->first();
+            return $society;
+        }
+
         static public function getSocietiesUserNotIn($user_id)
         {
             $all = self::getAllSocieties();
