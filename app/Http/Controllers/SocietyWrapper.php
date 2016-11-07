@@ -43,6 +43,7 @@
             $society->name = $name;
             $society->catagory = $catagory;
             $society->save();
+            return $society;
         }
 
         static public function deleteSociety()
@@ -97,6 +98,42 @@
             return $societies;
         }
 
+        static public function getSocietiesUserNotIn($user_id)
+        {
+            $all = self::getAllSocieties();
+            $societies_in = self::getSocietiesForUser($user_id);
+            $society_ids_in = array();
+            foreach ($societies_in as $society)
+            {
+                array_push($society_ids_in, $society->society_id);
+            }
+            // get index of societies user not in
+            $index = array();
+            $initial = 0;
+            foreach ($all as $society)
+            {
+                if(in_array($society->id, $society_ids_in))
+                {
+                    //unset($society, $all);
+                    array_push($index, $initial);
+                }
+                $initial++;
+            }
+            //remove socities a user is in from $all
+            foreach ($index as $i)
+            {
+                unset($all[$i]);
+            }
+            // get a new array
+            $result = array();
+            foreach($all as $key => $value)
+            {
+                array_push($result, $value);
+            }
+            return $result;
+        }
+
+        // TODO: deprecate this method
         // Fix this method
         static private function getSocietyName($society_id) {
             $society = DB::table('societies')->where('id', $society_id)->first();

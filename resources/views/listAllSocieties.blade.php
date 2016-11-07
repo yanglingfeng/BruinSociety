@@ -11,13 +11,23 @@
                     <!-- Table -->
                         <table class="table">
                             <tr>
-                                <th>Character</th>
-                                <th>Real Name</th>
-                                <th>Whatever</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Category</th>
                             </tr>
-                            @foreach($societies as $society)
+                            <tr>
+                                <td>Hey, you're not in these societies.</td>
+                            </tr>
+                            @foreach($societies_not_in as $society)
                                 <tr>
-
+                                    <td>{{$society->id}}</td><td>{{$society->name}}</td><td>{{$society->catagory}}</td>
+                                </tr>
+                            @endforeach
+                            <tr>
+                                <td>Hey, you're in these societies.</td>
+                            </tr>
+                            @foreach($societies_in as $society)
+                                <tr>
                                     <td>{{$society->id}}</td><td>{{$society->name}}</td><td>{{$society->catagory}}</td>
                                 </tr>
                             @endforeach

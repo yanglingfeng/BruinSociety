@@ -32,7 +32,8 @@ class SocietyController extends Controller
     public function createSociety(Request $request) {
         $name = $request->input('name');
         $catagory = $request->input('catagory');
-        \SocietyWrapper::createSociety($name, $catagory);
+        $society = \SocietyWrapper::createSociety($name, $catagory);
+        return response()->json($society);
 
     }
 
@@ -40,9 +41,22 @@ class SocietyController extends Controller
 
     }
 
+    // PHP is so shitty!!!
     public function listAllSocieties() {
-        $societies = \SocietyWrapper::getAllSocieties();
-        return view('listAllSocieties',['societies'=>$societies]);
+        $user_id = Auth::id();
+
+        $society_ids_in = \SocietyWrapper::getSocietiesForUser($user_id);
+        $societies_user_is_in = \SocietyWrapper::getSocietiesFromIds($society_ids_in);
+
+        //$society_ids_not_in = \SocietyWrapper::getSocietyIdsUserNotIn($user_id);
+        $societies_user_not_in = \SocietyWrapper::getSocietiesUserNotIn($user_id);
+        //return view('listAllSocieties',['societies_in'=>$societies_user_is_in,
+        //    'societies_not_in'=>$societies_user_not_in]);
+        //return response()->json($societies_user_not_in);
+        //return view('listAllSocieties',['societies'=>$societies_user_not_in]);
+        //return view('listAllSocieties',['societies'=>\SocietyWrapper::getAllSocieties()]);
+        return view('listAllSocieties', ['societies_in'=>$societies_user_is_in, 'societies_not_in'=>$societies_user_not_in]);
+
     }
 
     // List all societies a user is in
@@ -54,4 +68,6 @@ class SocietyController extends Controller
         return view('welcome', ['societies' => $societies]);
         //return response()->json($societies);
     }
+
+
 }
