@@ -8,7 +8,7 @@
     class DiscussionWrapper
     {
         //Quarter: 1 = Winter, 2 = Spring, 3 = Summer, 4 = Fall
-        static public function createDiscussion($quarter, $society_id, $year)
+        static public function createDiscussion($society_id, $quarter, $year)
         {
                 DB::table('discussions')->insert(
                     ['quarter' => $quarter, 'society_id' => $society_id, 'year' => $year]
@@ -38,7 +38,7 @@
 
         //This function returns the newest discussion infos
         static public function getNewestSocDiscussion($society_id) {
-            $discussion = App\Discussion::where('society_id', $societyid)->orderBy('year', 'desc')
+            $discussion = App\Discussion::where('society_id', $society_id)->orderBy('year', 'desc')
                             ->orderBy('quarter','desc')->first();
             return $discussion;
         }
@@ -46,8 +46,14 @@
         //This function returns the discussion sorted by year and quarter
         static public function sortSocDiscussion($society_id, $ascdesc)
         {
-            $discussions = App\Discussion::where('society_id', $societyid)->orderBy('year', $ascdesc)
+            $discussions = App\Discussion::where('society_id', $society_id)->orderBy('year', $ascdesc)
                             ->orderBy('quarter', $ascdesc)->get();
             return $discussions;
+        }
+
+        static public function getDiscussionFromId($discussion_id)
+        {
+            $discussion = App\Discussion::where('id', $discussion_id)->first();
+            return $discussion;
         }
     }

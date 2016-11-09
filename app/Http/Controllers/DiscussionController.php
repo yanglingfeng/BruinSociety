@@ -6,17 +6,32 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 
+require_once ('SocietyWrapper.php');
+require_once ('DiscussionWrapper.php');
+require_once ('PostWrapper.php');
+
 // TODO: add sorting and filtering for newest discussion
 
 class DiscussionController extends Controller
 {
-    public function show($request) {
+    public function show(Request $request) {
         $society_id = $request->input('society_id');
+        $discussion_id = $request->input('discussion_id');
+
         $society = \SocietyWrapper::getSocietyFromId($society_id);
-        $all_discussions = \DiscussionWrapper::getAllSocietyDicussion($society_id);
-        $newest_discussion = \DiscussionWrapper::getNewestDiscussion($society_id);
+        $all_discussions = \DiscussionWrapper::sortSocDiscussion($society_id, 'desc');
+
+        if(is_null($discussion_id)) {
+            $discussion = \DiscussionWrapper::getNewestSocDiscussion($society_id);
+        } else {
+            $discussion = \DiscussionWrapper::getDiscussionFromId($discussion_id);
+        }
+
+        // TODO: Default sorting, change later!
+        $posts = \PostWrapper::sortDiscPostByUpdateTime($discussion_id, 'desc');
         // TODO: add logic to filter and sort for the newsest discussion
-        return view('listDiscussions', ['all_dis' => $all_discussions, 'newsest_dis' => $newest_discussion,
-            'society' => $society]);
+        return view('listDiscussions', ['all_dis' => $all_discussions, 'discussion' => $discussion,
+            'society' => $society, 'posts' => $posts]);
+        //return response()->json($posts);
     }
 }
