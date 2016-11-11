@@ -62,3 +62,5 @@ Route::get('createSociety', function () {
  */
 
 Route::get('showDiscussions', 'DiscussionController@show');
+
+Route::get('showPost', 'PostController@show');
