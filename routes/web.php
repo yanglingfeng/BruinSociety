@@ -52,15 +52,19 @@ Route::get('create', 'SocietyController@createSociety');
 
 Route::get('delete', 'SocietyController@deleteSociety');
 
-// Returns the view for the form of creating a societyk
+// Returns the view for the form of creating a society
 Route::get('createSociety', function () {
     return view('createForm');
 });
 
 /**
- * The folllowing routes are related to showing discussions of a society.
+ * The following routes are related to showing discussions of a society.
  */
 
 Route::get('showDiscussions', 'DiscussionController@show');
+
+/**
+ * The following routes are for showing, creating and updating posts.
+ */
 
 Route::get('showPost', 'PostController@show');

@@ -16,16 +16,14 @@ require_once ('CommentWrapper.php');
 class PostController extends Controller
 {
     public function show(Request $request) {
+
         $post_id = $request->input('post_id');
 
         $post = \PostWrapper::getPostFromId($post_id);
 
         $comments = \CommentWrapper::getCommentsForPost($post_id);
 
-
-
-        //return view('listDiscussions', ['all_dis' => $all_discussions, 'discussion' => $discussion,
-        //    'society' => $society, 'posts' => $posts]);
-        return response()->json($comments);
+        //return response()->json($post);
+        return view('showPost', ['post' => $post, 'comments' => $comments]);
     }
 }
