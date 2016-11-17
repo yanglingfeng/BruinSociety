@@ -33,7 +33,9 @@ class SocietyController extends Controller
         $name = $request->input('name');
         $catagory = $request->input('catagory');
         $society = \SocietyWrapper::createSociety($name, $catagory);
-        return response()->json($society);
+        //return response()->json($society);
+        // redirecting to the listSociety page
+        return redirect('listSocieties');
 
     }
 

@@ -68,3 +68,10 @@ Route::get('showDiscussions', 'DiscussionController@show');
  */
 
 Route::get('showPost', 'PostController@show');
+
+/**
+ * The following route is for posting a comment
+ */
+
+Route::get('postComment', 'CommentController@post');
+
