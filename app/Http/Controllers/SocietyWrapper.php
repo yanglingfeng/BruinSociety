@@ -37,6 +37,20 @@
             }
         }
 
+        static public function isInSociety($user_id, $society_id)
+        {
+            $query = DB::table('user_society')
+                ->where('user_id', $user_id)
+                ->where('society_id', $society_id)
+                ->get();
+
+            if($query) {
+                return 1;
+            }
+
+            return 0;
+        }
+
         static public function createSociety($name, $catagory)
         {
             $society = new Society();

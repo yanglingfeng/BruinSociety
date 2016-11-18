@@ -15,6 +15,7 @@ require_once ('PostWrapper.php');
 class DiscussionController extends Controller
 {
     public function show(Request $request) {
+        $user_id = Auth::id();
         $society_id = $request->input('society_id');
         $discussion_id = $request->input('discussion_id');
 
@@ -27,10 +28,12 @@ class DiscussionController extends Controller
             $discussion = \DiscussionWrapper::getDiscussionFromId($discussion_id);
         }
 
+        $isInSociety = \SocietyWrapper::isInSociety($user_id, $society_id);
+
         // TODO: Default sorting, change later!
         $posts = \PostWrapper::sortDiscPostByUpdateTime($discussion_id, 'desc');
         // TODO: add logic to filter and sort for the newsest discussion
-        return view('listDiscussions', ['all_dis' => $all_discussions, 'discussion' => $discussion,
+        return view('listDiscussions', ['inSociety'=>$isInSociety, 'all_dis' => $all_discussions, 'discussion' => $discussion,
             'society' => $society, 'posts' => $posts]);
         //return response()->json($posts);
     }

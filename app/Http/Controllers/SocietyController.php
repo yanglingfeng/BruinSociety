@@ -30,6 +30,9 @@ class SocietyController extends Controller
         $user_id = Auth::id();
         $society_id = $request->input('society_id');
         \SocietyWrapper::quitSociety($user_id, $society_id);
+        return redirect()->action(
+            'SocietyController@listUserSocieties'
+        );
     }
 
     public function createSociety(Request $request) {

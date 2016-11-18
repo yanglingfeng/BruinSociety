@@ -30,7 +30,7 @@
                                                              text-align: center;
                                                              padding: 14px 16px;
                                                              text-decoration: none;
-                                                             ">Create A Society</a>
+                                                             ">Create a Society</a>
                             </li>
                             <li style="float: left;"><a href="{{ url('/listSocieties') }}"
                                                         style="display: inline-block;
@@ -38,7 +38,7 @@
                                                              text-align: center;
                                                              padding: 14px 16px;
                                                              text-decoration: none;
-                                                             ">Chat rooms</a>
+                                                             ">Chat Rooms</a>
                             </li>
                         </ul>
                         <!-- Table -->
@@ -84,6 +84,39 @@
   justify-content: center;
   align-items: center;
   flex: 0 0 160px;">Discussions</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="get" action="{{ url('/quit') }}">
+                                        <input type="hidden" name="society_id"  value="{{$society->id}}" />
+                                        <button type="submit" style=" display: flex;
+  overflow: hidden;
+  width:50px;
+
+  cursor: pointer;
+  user-select: none;
+  transition: all 60ms ease-in-out;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: none;
+  text-transform: capitalize;
+
+  color: #fff;
+  border: 0 none;
+  border-radius: 4px;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 160px;">Quit</button>
                                     </form>
                                 </td>
                             </tr>
