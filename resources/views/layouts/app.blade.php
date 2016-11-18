@@ -79,6 +79,34 @@
         </nav>
 
         @yield('content')
+
+        <nav>
+            <div class="navbar navbar-default navbar-static-top" style="
+                                                                        position: absolute;
+                                                                        right: 0;
+                                                                        bottom: 0;
+                                                                        left: 0;
+                                                                        padding: 1rem;
+                                                                        background-color: #efefef;
+                                                                        text-align: center;">
+
+
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav">
+                        &nbsp;
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Authentication Links -->
+                            <li><a href="{{ url('/register') }}">Contact Us</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
     </div>
 
     <!-- Scripts -->

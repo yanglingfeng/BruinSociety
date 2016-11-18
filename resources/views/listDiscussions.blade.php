@@ -5,20 +5,24 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-success">
-                    <div class="panel-heading">List of all Discussions</div>
+                    <div class="panel-heading" style="background-color: #F5F5DC;">List of all Discussions</div>
 
-                @if(Auth::check())
-                    <!-- Table -->
+
+                    @if(Auth::check())
+                        @if(!$all_dis)
+                            <td>Sorry, there's no discussions!</td>
+                        @else
+                        <!-- Table -->
                         <table class="table">
+                            <tr>
+                                <td>These are discussions for {{$society->name}}</td>
+                            </tr>
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Category</th>
                             </tr>
-                            <tr>
-                                <td>These are discussions for {{$society->name}}</td>
-                            </tr>
-                            @foreach($all_dis as $dis)
+                            @forelse($all_dis as $dis)
                                 <tr>
                                     <td>{{$dis->id}}</td>
                                     <td>
@@ -30,7 +34,12 @@
                                     </td>
                                     <td>{{$dis->year}}</td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td>No discussions exist for {{$society->name}}. Would you like to create one?</td>
+                                </tr>
+                            @endforelse
+                            @if(!empty($discussion))
                             <tr>
                                 <td>Posts for @if($discussion->quarter==0) winter
                                     @elseif($discussion->quarter==1) spring
@@ -45,7 +54,9 @@
                                     <td>{{$post->post_id}}</td><td>{{$post->title}}</td><td>{{$post->content}}</td>
                                 </tr>
                             @endforeach
+                            @endif
                         </table>
+                        @endif
                     @endif
 
 

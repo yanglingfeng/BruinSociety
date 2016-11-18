@@ -21,6 +21,12 @@
                             @foreach($societies_not_in as $society)
                                 <tr>
                                     <td>{{$society->id}}</td><td>{{$society->name}}</td><td>{{$society->catagory}}</td>
+                                    <td>
+                                        <form method="get" action="{{ url('/showDiscussions') }}">
+                                            <input type="hidden" name="society_id"  value="{{$society->id}}" />
+                                            <button type="submit">Discussions</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                             <tr>
@@ -29,6 +35,12 @@
                             @foreach($societies_in as $society)
                                 <tr>
                                     <td>{{$society->id}}</td><td>{{$society->name}}</td><td>{{$society->catagory}}</td>
+                                    <td>
+                                        <form method="get" action="{{ url('/showDiscussions') }}">
+                                            <input type="hidden" name="society_id"  value="{{$society->id}}" />
+                                            <button type="submit">Discussions</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </table>
