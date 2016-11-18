@@ -10,9 +10,12 @@
         //Quarter: 1 = Winter, 2 = Spring, 3 = Summer, 4 = Fall
         static public function createDiscussion($society_id, $quarter, $year)
         {
-                DB::table('discussions')->insert(
-                    ['quarter' => $quarter, 'society_id' => $society_id, 'year' => $year]
-                );  
+            $discussion = new Discussion();
+            $discussion->society_id = $society_id;
+            $discussion->quarter = $quarter;
+            $discussion->year = $year;
+            $discussion->save();
+            return $discussion;
         }
 
         //This function returns the society id a discussion belongs to

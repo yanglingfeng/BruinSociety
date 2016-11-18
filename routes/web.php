@@ -63,6 +63,10 @@ Route::get('createSociety', function () {
 
 Route::get('showDiscussions', 'DiscussionController@show');
 
+Route::get('createDiscussion', 'DiscussionController@discussionCreation');
+
+Route::post('createDis', 'DiscussionController@create');
+
 /**
  * The following routes are for showing, creating and updating posts.
  */

@@ -41,4 +41,23 @@ class DiscussionController extends Controller
             'society' => $society, 'posts' => $posts]);
         //return response()->json($posts);
     }
+
+    public function discussionCreation(Request $request) {
+        $society_id = $request->input('society_id');
+        $society = \SocietyWrapper::getSocietyFromId($society_id);
+        return view('discussionCreation', ['society'=>$society]);
+    }
+
+    public function create(Request $request)
+    {
+        $society_id = $request->input('society_id');
+        $quarter = $request->input('quarter');
+        $year = $request->input('year');
+        $discussion = \DiscussionWrapper::createDiscussion($society_id, $quarter, $year);
+        //return response()->json($discussion);
+        return redirect()->action(
+            'DiscussionController@show', ['society_id' => $society_id, 'discussion_id'=>$discussion->id]
+        );
+    }
+
 }

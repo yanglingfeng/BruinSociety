@@ -21,7 +21,7 @@
     </script>
 </head>
 <body>
-    <div id="app">
+    <div id="app" style="padding-bottom: 180px;">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -82,6 +82,9 @@
 
         <nav>
             <div class="navbar navbar-default navbar-static-top" style="
+            position: relative;
+            margin-top: -180px;
+            clear:both;
                                                                         right: 0;
                                                                         bottom: 0;
                                                                         left: 0;

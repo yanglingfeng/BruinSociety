@@ -37,7 +37,7 @@
                                 </li>
                             @endif
 
-                            <li style="float: left;"><a href="{{ url('/createSociety') }}"
+                            <li style="float: left;"><a href="{{ url(action('DiscussionController@discussionCreation', ['society_id'=>$society->id])) }}"
                                                         style="display: inline-block;
                                                              color: black;
                                                              text-align: center;
@@ -53,6 +53,16 @@
                                                              text-decoration: none;
                                                              ">Chat Room</a>
                             </li>
+
+                                </li>
+                                <li style="float: left;"><a href="{{ url('/listSocieties') }}"
+                                                            style="display: inline-block;
+                                                             color: black;
+                                                             text-align: center;
+                                                             padding: 14px 16px;
+                                                             text-decoration: none;
+                                                             ">View Members</a>
+                                </li>
 
                         </ul>
                         @if(!$all_dis)
@@ -136,6 +146,24 @@
                                 <td></td>
                                 <td></td>
                             </tr>
+
+                            <tr style="background-color: #F8F8F8;
+                                    list-style-type: none;
+                                    margin: 0;
+                                    padding: 0;
+                                    overflow: hidden;">
+                                <td style="float: left;">
+                                    <a href="{{ url(action('PostController@show', ['post_id'=>1]))}}" style="color:black;">Create a Post</a>
+                                </td>
+                                <td style="float: left;">
+                                    <a href="{{ url(action('PostController@show', ['post_id'=>1]))}}" style="color:black;">Newest Posts First</a>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+
+                            </tr>
+
                                 <tr>
                                     <th>Title</th>
                                     <th>Author</th>
@@ -150,6 +178,7 @@
                                     <td>{{$post->user_name}}</td>
                                     <td>{{$post->created_at}}</td>
                                     <td>{{$post->updated_at}}</td>
+
                                 </tr>
                             @endforeach
                             @endif
