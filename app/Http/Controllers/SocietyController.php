@@ -18,7 +18,10 @@ class SocietyController extends Controller
         $user_id = Auth::id();
         $society_id = $request->input('society_id');
         \SocietyWrapper::joinSociety($user_id, $society_id);
-        return response()->json(['name'=>'Hi']);
+        //return response()->json(['name'=>'Hi']);
+        return redirect()->action(
+            'DiscussionController@show', ['society_id' => $society_id]
+        );
     }
 
     // Quit a society

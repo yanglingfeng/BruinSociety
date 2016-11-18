@@ -48,13 +48,13 @@ Route::get('quit', 'SocietyController@quit');
 Route::get('listSocieties', 'SocietyController@listAllSocieties');
 
 // TODO: change to post later
-Route::get('create', 'SocietyController@createSociety');
+Route::post('create', 'SocietyController@createSociety');
 
 Route::get('delete', 'SocietyController@deleteSociety');
 
 // Returns the view for the form of creating a society
 Route::get('createSociety', function () {
-    return view('createForm');
+    return view('societyCreation');
 });
 
 /**
