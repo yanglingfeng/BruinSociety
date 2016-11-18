@@ -84,7 +84,7 @@
                                             <input type="hidden" name="society_id"  value="{{$society->id}}" />
                                             <button type="submit" style=" display: flex;
   overflow: hidden;
-  width:100px;
+  width:50px;
 
   cursor: pointer;
   user-select: none;
@@ -167,7 +167,7 @@
                                             <input type="hidden" name="society_id"  value="{{$society->id}}" />
                                             <button type="submit" style="display: flex;
                                                     overflow: hidden;
-                                                    width:100px;
+                                                    width:50px;
 
                                                     cursor: pointer;
                                                     user-select: none;

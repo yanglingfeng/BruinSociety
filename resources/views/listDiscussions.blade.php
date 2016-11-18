@@ -16,6 +16,26 @@
                                     background-color: 	#F8F8F8;
                             ">
 
+                            @if($inSociety==1)
+                                <li style="float: left;"><a href="{{ url('/listSocieties') }}"
+                                                            style="display: inline-block;
+                                                             color: black;
+                                                             text-align: center;
+                                                             padding: 14px 16px;
+                                                             text-decoration: none;
+                                                             ">Join Society</a>
+                                </li>
+                            @else
+                                <li style="float: left;"><a href="{{ url('/listSocieties') }}"
+                                                            style="display: inline-block;
+                                                             color: black;
+                                                             text-align: center;
+                                                             padding: 14px 16px;
+                                                             text-decoration: none;
+                                                             ">Quit Society</a>
+                                </li>
+                            @endif
+
                             <li style="float: left;"><a href="{{ url('/createSociety') }}"
                                                         style="display: inline-block;
                                                              color: black;
@@ -30,8 +50,9 @@
                                                              text-align: center;
                                                              padding: 14px 16px;
                                                              text-decoration: none;
-                                                             ">Chat Rooms</a>
+                                                             ">Chat Room</a>
                             </li>
+
                         </ul>
                         @if(!$all_dis)
                             <td>Sorry, there's no discussions!</td>
