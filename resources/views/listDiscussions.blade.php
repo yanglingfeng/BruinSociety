@@ -16,8 +16,8 @@
                                     background-color: 	#F8F8F8;
                             ">
 
-                            @if($inSociety==1)
-                                <li style="float: left;"><a href="{{ url('/listSocieties') }}"
+                            @if($inSociety==0)
+                                <li style="float: left;"><a href="{{ url(action('SocietyController@join', ['society_id'=>$society->id])) }}"
                                                             style="display: inline-block;
                                                              color: black;
                                                              text-align: center;
@@ -25,8 +25,9 @@
                                                              text-decoration: none;
                                                              ">Join Society</a>
                                 </li>
-                            @else
-                                <li style="float: left;"><a href="{{ url('/listSocieties') }}"
+
+                            @elseif($inSociety==1)
+                                <li style="float: left;"><a href="{{ url(action('SocietyController@quit', ['society_id'=>$society->id])) }}"
                                                             style="display: inline-block;
                                                              color: black;
                                                              text-align: center;
@@ -63,14 +64,14 @@
                                 <td style="font-weight: bold;">Discussions for {{$society->name}}</td>
                             </tr>
                             <tr>
-                                <th>ID</th>
                                 <th>Quarter</th>
                                 <th>Year</th>
                                 <th></th>
+                                <th></th>
+
                             </tr>
                             @forelse($all_dis as $dis)
                                 <tr>
-                                    <td>{{$dis->id}}</td>
                                     <td>
                                         @if($dis->quarter==0) Winter
                                         @elseif($dis->quarter==1) Spring
@@ -79,11 +80,47 @@
                                         @endif
                                     </td>
                                     <td>{{$dis->year}}</td>
-                                    <td>{{$dis->year}}</td>
+                                    <td>
+                                        <form method="get" action="{{ url('/showDiscussions') }}">
+                                            <input type="hidden" name="society_id"  value="{{$society->id}}" />
+                                            <input type="hidden" name="discussion_id"  value="{{$dis->id}}" />
+                                            <button type="submit" style="display: flex;
+                                                    overflow: hidden;
+                                                    width:100px;
+
+                                                    cursor: pointer;
+                                                    user-select: none;
+                                                    transition: all 60ms ease-in-out;
+                                                    text-align: center;
+                                                    white-space: nowrap;
+                                                    text-decoration: none !important;
+                                                    text-transform: none;
+                                                    text-transform: capitalize;
+
+                                                    color: #fff;
+                                                    border: 0 none;
+                                                    border-radius: 4px;
+
+                                                    font-size: 14px;
+                                                    font-weight: 500;
+                                                    line-height: 1.3;
+
+                                                    -webkit-appearance: none;
+                                                    -moz-appearance:    none;
+                                                    appearance:         none;
+
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                    flex: 0 0 160px;">View Posts</button>
+                                        </form>
+                                    </td>
+                                    <td></td>
                                 </tr>
                             @empty
                                 <tr>
                                     <td>No discussions exist for {{$society->name}}. Would you like to create one?</td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             @endforelse
                             @if(!empty($discussion))
@@ -99,9 +136,20 @@
                                 <td></td>
                                 <td></td>
                             </tr>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Created at</th>
+                                    <th>Last Replied at</th>
+                                </tr>
                             @foreach($posts as $post)
                                 <tr>
-                                    <td>{{$post->post_id}}</td><td>{{$post->title}}</td><td>{{$post->content}}</td>
+                                    <td>
+                                        <a href="{{ url(action('PostController@show', ['post_id'=>$post->post_id]))}}">{{$post->title}}</a>
+                                    </td>
+                                    <td>{{$post->user_name}}</td>
+                                    <td>{{$post->created_at}}</td>
+                                    <td>{{$post->updated_at}}</td>
                                 </tr>
                             @endforeach
                             @endif

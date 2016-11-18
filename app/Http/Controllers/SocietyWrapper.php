@@ -42,7 +42,7 @@
             $query = DB::table('user_society')
                 ->where('user_id', $user_id)
                 ->where('society_id', $society_id)
-                ->get();
+                ->first();
 
             if($query) {
                 return 1;

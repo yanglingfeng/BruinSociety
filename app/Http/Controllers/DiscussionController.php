@@ -24,6 +24,10 @@ class DiscussionController extends Controller
 
         if(is_null($discussion_id)) {
             $discussion = \DiscussionWrapper::getNewestSocDiscussion($society_id);
+            if(!is_null($discussion))
+            {
+                $discussion_id = $discussion->id;
+            }
         } else {
             $discussion = \DiscussionWrapper::getDiscussionFromId($discussion_id);
         }
