@@ -49,7 +49,9 @@ Route::get('listSocieties', 'SocietyController@listAllSocieties');
 
 // TODO: change to post later
 
-Route::get('postCreation', 'postController@postCreation');
+Route::get('postCreation', 'PostController@postCreation');
+
+Route::post('createPost', 'PostController@create');
 
 Route::post('create', 'SocietyController@createSociety');
 
@@ -74,7 +76,7 @@ Route::post('createDis', 'DiscussionController@create');
  * The following routes are for showing, creating and updating posts.
  */
 
-Route::get('showPost', 'PostController@show');
+Route::any('showPost', 'PostController@show');
 
 /**
  * The following route is for posting a comment

@@ -153,7 +153,7 @@
                                     padding: 0;
                                     overflow: hidden;">
                                 <td style="float: left;">
-                                    <a href="{{ url(action('PostController@show', ['post_id'=>1]))}}" style="color:black;">Create a Post</a>
+                                    <a href="{{ url(action('PostController@postCreation', ['society_id'=>$society->id, 'discussion_id'=>$discussion->id]))}}" style="color:black;">Create a Post</a>
                                 </td>
                                 <td style="float: left;">
                                     <a href="{{ url(action('PostController@show', ['post_id'=>1]))}}" style="color:black;">Newest Posts First</a>

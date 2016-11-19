@@ -6,12 +6,19 @@
     class PostWrapper
     {
         //This function is used to create a post in a discussion
-        static public function createPost($title, $content, $has_link, $link, $society_id, $discussion_id)
+        static public function createPost($title, $content, $has_link, $link, $society_id, $discussion_id, $poster_id, $poster_name)
         {
-                DB::table('posts')->insert(
-                    ['title' => $title, 'content' => $content, 'has_link' => $has_link,
-                    'link' => $link, 'society_id' => $society_id, 'discussion_id' => $discussion_id]
-                );  
+            $post = new Post();
+            $post->title = $title;
+            $post->content = $content;
+            $post->has_link = $has_link;
+            $post->link = $link;
+            $post->discussion_id = $discussion_id;
+            $post->user_id = $poster_id;
+            $post->user_name = $poster_name;
+            $post->save();
+
+            return $post;
         }
 
         //This function returns a post from its id
