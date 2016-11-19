@@ -26,4 +26,13 @@ class PostController extends Controller
         //return response()->json($post);
         return view('showPost', ['post' => $post, 'comments' => $comments]);
     }
+
+    public function postCreation(Request $request)
+    {
+        $discussion_id = $request->input('discussion_id');
+        $society_id = $request->input('society_id');
+        $society = \SocietyWrapper::getSocietyFromId($society_id);
+        $discussion = \DiscussionWrapper::getDiscussionFromId($discussion_id);
+        return view('postCreation', ['discussion_id'=>$discussion_id]);
+    }
 }

@@ -48,6 +48,9 @@ Route::get('quit', 'SocietyController@quit');
 Route::get('listSocieties', 'SocietyController@listAllSocieties');
 
 // TODO: change to post later
+
+Route::get('postCreation', 'postController@postCreation');
+
 Route::post('create', 'SocietyController@createSociety');
 
 Route::get('delete', 'SocietyController@deleteSociety');
