@@ -16,26 +16,7 @@
                                     background-color: 	#F8F8F8;
                             ">
 
-                            @if($inSociety==0)
-                                <li style="float: left;"><a href="{{ url(action('SocietyController@join', ['society_id'=>$society->id])) }}"
-                                                            style="display: inline-block;
-                                                             color: black;
-                                                             text-align: center;
-                                                             padding: 14px 16px;
-                                                             text-decoration: none;
-                                                             ">Join Society</a>
-                                </li>
 
-                            @elseif($inSociety==1)
-                                <li style="float: left;"><a href="{{ url(action('SocietyController@quit', ['society_id'=>$society->id])) }}"
-                                                            style="display: inline-block;
-                                                             color: black;
-                                                             text-align: center;
-                                                             padding: 14px 16px;
-                                                             text-decoration: none;
-                                                             ">Quit Society</a>
-                                </li>
-                            @endif
 
                             <li style="float: left;"><a href="{{ url(action('DiscussionController@discussionCreation', ['society_id'=>$society->id])) }}"
                                                         style="display: inline-block;
@@ -63,6 +44,27 @@
                                                              text-decoration: none;
                                                              ">View Members</a>
                                 </li>
+
+                            @if($inSociety==0)
+                                <li style="float: left;"><a href="{{ url(action('SocietyController@join', ['society_id'=>$society->id])) }}"
+                                                            style="display: inline-block;
+                                                             color: black;
+                                                             text-align: center;
+                                                             padding: 14px 16px;
+                                                             text-decoration: none;
+                                                             ">Join Society</a>
+                                </li>
+
+                            @elseif($inSociety==1)
+                                <li style="float: left;"><a href="{{ url(action('SocietyController@quit', ['society_id'=>$society->id])) }}"
+                                                            style="display: inline-block;
+                                                             color: black;
+                                                             text-align: center;
+                                                             padding: 14px 16px;
+                                                             text-decoration: none;
+                                                             ">Quit Society</a>
+                                </li>
+                            @endif
 
                         </ul>
                         @if(!$all_dis)
@@ -156,7 +158,7 @@
                                     <a href="{{ url(action('PostController@postCreation', ['society_id'=>$society->id, 'discussion_id'=>$discussion->id]))}}" style="color:black;">Create a Post</a>
                                 </td>
                                 <td style="float: left;">
-                                    <a href="{{ url(action('PostController@show', ['post_id'=>1]))}}" style="color:black;">Newest Posts First</a>
+                                    <a href="{{ url(action('PostController@show', ['post_id'=>1]))}}" style="color:black;">Sort by Newest Posts</a>
                                 </td>
                                 <td></td>
                                 <td></td>
@@ -173,7 +175,7 @@
                             @foreach($posts as $post)
                                 <tr>
                                     <td>
-                                        <a href="{{ url(action('PostController@show', ['post_id'=>$post->post_id]))}}">{{$post->title}}</a>
+                                        <a href="{{ url(action('PostController@show', ['post_id'=>$post->post_id, 'discussion_id'=>$discussion->id, 'society_id'=>$society->id]))}}">{{$post->title}}</a>
                                     </td>
                                     <td>{{$post->user_name}}</td>
                                     <td>{{$post->created_at}}</td>

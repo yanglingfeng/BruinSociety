@@ -32,7 +32,7 @@
                                 <label for="content" class="col-md-4 control-label">Content</label>
 
                                 <div class="col-md-6">
-                                    <input id="content" type="text" class="form-control" name="content" value="{{ old('content') }}" required autofocus>
+                                    <textarea id="content" type="text" class="form-control" name="content" value="{{ old('content') }}" required autofocus rows="15"> </textarea>
 
                                     @if ($errors->has('content'))
                                         <span class="help-block">
