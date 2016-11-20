@@ -19,6 +19,13 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    <script>
+        document.getElementById("sortOptions").onchange = function() {
+            if (this.selectedIndex!==0) {
+                window.location.href = this.value;
+            }
+        };
+    </script>
 </head>
 <body>
     <div id="app" style="padding-bottom: 180px;">

@@ -28,21 +28,9 @@
             return $post;
         }
 
-        //This function returns all posts belonging to a society
-        static private function getPostFromSociety($society_id) {
-            $posts = App\Post::where('society_id', $society_id)->get();
-            return $posts;
-        }
-
         //This function returns all posts belonging to a discussion
         static private function getPostFromDiscussion($discussion_id) {
             $posts = App\Post::where('discussion_id', $discussion_id)->get();
-            return $posts;
-        }
-
-        //This function returns all posts with inserted title
-        static private function getPostFromTitle($title) {
-            $posts = App\Post::where('title', $title)->get();
             return $posts;
         }
 
@@ -60,20 +48,6 @@
             return $posts;
         }
 
-        //These will return all posts belonging to a society, sorted by title
-        static public function sortSocPostByTitleAsc($society_id, $ascdesc)
-        {
-            $posts = App\Post::where('society_id', $society_id)->orderBy('title', $ascdesc)->get();
-            return $posts;
-        }
-
-        //These will return all posts belonging to a disc, sorted by title
-        static public function sortDiscPostByTitleAsc($discussion_id, $ascdesc)
-        {
-            $posts = App\Post::where('discussion_id', $discussion_id)->orderBy('title', $ascdesc)->get();
-            return $posts;
-        }
-
         //These will return all posts belonging to a disc, sorted by update time
         static public function sortDiscPostByUpdateTime($discussion_id, $ascdesc)
         {
@@ -85,6 +59,14 @@
         static public function sortSocPostByCreateTime($discussion_id, $ascdesc)
         {
             $posts = App\Post::where('discussion_id', $discussion_id)->orderBy('created_at', $ascdesc)->get();
+            return $posts;
+        }
+
+        static public function getPostsWithFiles($discussion_id)
+        {
+            $posts = App\Post::where('discussion_id', $discussion_id)
+                    ->where('has_link', 1)
+                    ->get();
             return $posts;
         }
 

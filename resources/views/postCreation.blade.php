@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -11,7 +12,7 @@
                         @elseif($discussion->quarter==3) Fall
                         @endif {{$discussion->year}}</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/createPost') }}">
+                        <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" action="{{ url('/createPost') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
@@ -42,17 +43,10 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                <label for="title" class="col-md-4 control-label">Title</label>
-
+                            <div class="form-group">
+                                <label for="myFile" class="col-md-4 control-label">File</label>
                                 <div class="col-md-6">
-                                    <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" required autofocus>
-
-                                    @if ($errors->has('title'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('title') }}</strong>
-                                    </span>
-                                    @endif
+                                    <input type="file" id="myFile" name="myFile" value="{{ old('myFile')}}">
                                 </div>
                             </div>
 
@@ -72,4 +66,5 @@
             </div>
         </div>
     </div>
+
 @endsection

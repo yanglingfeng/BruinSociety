@@ -5,9 +5,10 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-success">
-                    <div class="panel-heading" style="background-color: #F5F5DC; ">List of All Discussions</div>
-
-
+                    <div class="panel-heading" style="background-color: #F5F5DC; ">
+                        List of All Discussions
+                        <a href="{{ url('/listSocieties') }}" style="float: right">See All Societies</a>
+                    </div>
                     @if(Auth::check())
                         <ul style=" list-style-type: none;
                                     margin: 0;
@@ -15,9 +16,6 @@
                                     overflow: hidden;
                                     background-color: 	#F8F8F8;
                             ">
-
-
-
                             <li style="float: left;"><a href="{{ url(action('DiscussionController@discussionCreation', ['society_id'=>$society->id])) }}"
                                                         style="display: inline-block;
                                                              color: black;
@@ -34,7 +32,6 @@
                                                              text-decoration: none;
                                                              ">Chat Room</a>
                             </li>
-
                                 </li>
                                 <li style="float: left;"><a href="{{ url('/listSocieties') }}"
                                                             style="display: inline-block;
@@ -44,7 +41,6 @@
                                                              text-decoration: none;
                                                              ">View Members</a>
                                 </li>
-
                             @if($inSociety==0)
                                 <li style="float: left;"><a href="{{ url(action('SocietyController@join', ['society_id'=>$society->id])) }}"
                                                             style="display: inline-block;
@@ -78,6 +74,7 @@
                             <tr>
                                 <th>Quarter</th>
                                 <th>Year</th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
 
@@ -127,6 +124,7 @@
                                         </form>
                                     </td>
                                     <td></td>
+                                    <td></td>
                                 </tr>
                             @empty
                                 <tr>
@@ -147,6 +145,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
                             </tr>
 
                             <tr style="background-color: #F8F8F8;
@@ -158,12 +157,26 @@
                                     <a href="{{ url(action('PostController@postCreation', ['society_id'=>$society->id, 'discussion_id'=>$discussion->id]))}}" style="color:black;">Create a Post</a>
                                 </td>
                                 <td style="float: left;">
-                                    <a href="{{ url(action('PostController@show', ['post_id'=>1]))}}" style="color:black;">Sort by Newest Posts</a>
+                                    <a href="{{ url(action('DiscussionController@show', ['discussion_id'=>$discussion->id, 'society_id'=>$society->id, 'sort'=>'filesOnly']))}}" style="color:black;">Posts with Files Only</a>
                                 </td>
+                                <td style="float: left;">
+                                    <select id="sortOptions">
+                                        <option value="">Sort by</option>
+                                        <option value="{{ url(action('DiscussionController@show', ['discussion_id'=>$discussion->id, 'society_id'=>$society->id]))}}" >Newest Post</option>
+                                        <option value="{{ url(action('DiscussionController@show', ['discussion_id'=>$discussion->id, 'society_id'=>$society->id, 'sort'=>'updateDesc']))}}">Newest Reply</option>
+                                    </select>
+                                </td>
+                                <script>
+                                    document.getElementById("sortOptions").onchange = function() {
+                                        if (this.selectedIndex!==0) {
+                                            window.location.href = this.value;
+                                        }
+                                    };
+                                </script>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-
+                                <td></td>
                             </tr>
 
                                 <tr>
@@ -171,6 +184,7 @@
                                     <th>Author</th>
                                     <th>Created at</th>
                                     <th>Last Replied at</th>
+                                    <th>With file?</th>
                                 </tr>
                             @foreach($posts as $post)
                                 <tr>
@@ -180,6 +194,11 @@
                                     <td>{{$post->user_name}}</td>
                                     <td>{{$post->created_at}}</td>
                                     <td>{{$post->updated_at}}</td>
+                                    <td>
+                                        @if($post->has_link==1)
+                                            Yes!
+                                        @endif
+                                    </td>
 
                                 </tr>
                             @endforeach

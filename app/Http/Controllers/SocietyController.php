@@ -39,10 +39,13 @@ class SocietyController extends Controller
         $name = $request->input('name');
         $catagory = $request->input('catagory');
         $society = \SocietyWrapper::createSociety($name, $catagory);
+        $user_id = Auth::id();
+        \SocietyWrapper::joinSociety($user_id, $society->id);
         //return response()->json($society);
         // redirecting to the listSociety page
-        return redirect('listSocieties');
-
+        return redirect()->action(
+            'DiscussionController@show', ['society_id'=>$society->id]
+        );
     }
 
     public function deleteSociety(Request $request) {

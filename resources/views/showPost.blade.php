@@ -6,7 +6,10 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-success">
                     <div class="panel-heading" style="font-weight: bold;
-                    background-color: white; ">{{$post->title}} --- {{$post->user_name}}</div>
+                    background-color: white; ">
+                            {{$post->title}} by {{$post->user_name}}
+                        <a style="float: right" href="{{ url(action('DiscussionController@show', ['discussion_id'=>$discussion->id, 'society_id'=>$society->id]))}}">Back to Discussion Page</a>
+                    </div>
 
                 @if(Auth::check())
                     <!-- Table -->
@@ -25,11 +28,19 @@
                                 <td>{{$post->updated_at}}</td>
                             </tr>
 
+                            @if($post->has_link==1)
+                            <tr>
+                                <td>
+                                    <a href="{{url($file_url)}}">Click here to download the appended file</a>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            @endif
+
                         </table>
-
                     @endif
-
-
                 </div>
                 @if(Auth::guest())
                     <a href="{{ url('/login') }}" class="btn btn-info"> You need to login to see the list 😜😜 >></a>
@@ -110,7 +121,7 @@
                                 <label for="content" class="col-md-4 control-label">Content</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="content" type="text" class="form-control" name="content" value="{{ old('content') }}" required autofocus rows="15"> </textarea>
+                                    <textarea id="content" type="text" class="form-control" name="content" value="{{ old('content') }}" required autofocus rows="5"> </textarea>
 
                                     @if ($errors->has('content'))
                                         <span class="help-block">

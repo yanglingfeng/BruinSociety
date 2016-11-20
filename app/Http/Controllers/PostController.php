@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+
 require_once ('SocietyWrapper.php');
 require_once ('DiscussionWrapper.php');
 require_once ('PostWrapper.php');
@@ -27,8 +31,18 @@ class PostController extends Controller
 
         $comments = \CommentWrapper::getCommentsForPost($post_id);
 
-        //return response()->json($discussion);
-        return view('showPost', ['post' => $post, 'comments' => $comments, 'society'=>$society, 'discussion'=>$discussion]);
+        $file_url = '';
+
+        if($post->has_link == 1) {
+            $file_url = Storage::url($post->link);
+            //$prefix = "/storage/";
+            //$link = $prefix.$file_url;
+            //$file_url = $link;
+        }
+
+        //return response()->json($file_url);
+        return view('showPost', ['post' => $post, 'comments' => $comments,
+                   'society'=>$society, 'discussion'=>$discussion, 'file_url'=>$file_url]);
     }
 
     public function postCreation(Request $request)
@@ -43,6 +57,8 @@ class PostController extends Controller
 
     public function create(Request $request)
     {
+        //$file = $request->file('myFile');
+        //return response()->json($request->hasFile('myFile'));
         $current_user = Auth::user();
         $poster_id = Auth::id();
         $poster_name = $current_user->name;
@@ -52,6 +68,13 @@ class PostController extends Controller
         // TODO: currently hardcoded to be 0, change when we support file upload
         $has_link = 0;
         $link = '';
+
+        // handle file uploads
+        if($request->hasFile('myFile')) {
+            $has_link = 1;
+            $path = $request->file('myFile')->store('public');
+            $link = $path;
+        }
         $society_id = $request->input('society_id');
         $discussion_id = $request->input('discussion_id');
         $post = \PostWrapper::createPost($title, $content, $has_link, $link, $society_id, $discussion_id, $poster_id, $poster_name);
