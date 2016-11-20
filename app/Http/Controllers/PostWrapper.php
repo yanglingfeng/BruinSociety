@@ -87,4 +87,10 @@
             $posts = App\Post::where('discussion_id', $discussion_id)->orderBy('created_at', $ascdesc)->get();
             return $posts;
         }
+
+        static public function updateUpdatedAt($post_id, $updated_at)
+        {
+            App\Post::where('post_id', $post_id)
+                ->update(['updated_at'=>$updated_at]);
+        }
     }

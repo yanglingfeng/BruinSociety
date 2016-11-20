@@ -82,5 +82,5 @@ Route::any('showPost', 'PostController@show');
  * The following route is for posting a comment
  */
 
-Route::get('postComment', 'CommentController@post');
+Route::post('postComment', 'CommentController@post');
 

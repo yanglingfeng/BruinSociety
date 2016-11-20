@@ -12,7 +12,6 @@
                     <!-- Table -->
                         <table class="table">
                             <tr>
-                                <th>ID</th>
                                 <th>Title</th>
                                 <th>Author</th>
                                 <th>Posted at</th>
@@ -20,7 +19,6 @@
                             </tr>
 
                             <tr>
-                                <td>{{$post->post_id}}</td>
                                 <td>{{$post->title}}</td>
                                 <td>{{$post->user_name}}</td>
                                 <td>{{$post->created_at}}</td>
@@ -75,11 +73,6 @@
                         <table class="table">
 
                             <tr>
-                                <td>Here are the replies.</td>
-                            </tr>
-
-                            <tr>
-                                <th>ID</th>
                                 <th>Content</th>
                                 <th>Author</th>
                                 <th>Posted at</th>
@@ -87,7 +80,6 @@
 
                             @foreach($comments as $comment)
                                 <tr>
-                                    <td>{{$comment->id}}</td>
                                     <td>{{$comment->content}}</td>
                                     <td>{{$comment->commenter_name}}</td>
                                     <td>{{$comment->created_at}}</td>
@@ -107,26 +99,12 @@
     <!-- Reply form -->
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="font-weight: bold;">Reply</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/createPost') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/postComment') }}">
                             {{ csrf_field() }}
-
-                            <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                <label for="title" class="col-md-4 control-label">Title</label>
-
-                                <div class="col-md-6">
-                                    <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" required autofocus>
-
-                                    @if ($errors->has('title'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('title') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
 
                             <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
                                 <label for="content" class="col-md-4 control-label">Content</label>
@@ -144,11 +122,12 @@
 
                             <input type="hidden" name="discussion_id"  value="{{$discussion->id}}" />
                             <input type="hidden" name="society_id" value="{{$society->id}}" />
+                            <input type="hidden" name="post_id" value="{{$post->post_id}}" />
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Create!
+                                        Post
                                     </button>
                                 </div>
                             </div>
