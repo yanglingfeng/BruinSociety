@@ -7,7 +7,7 @@
                 <div class="panel panel-success">
                     <div class="panel-heading" style="font-weight: bold;
                     background-color: white; ">
-                            {{$post->title}} by {{$post->user_name}}
+                            {{$post->title}}
                         <a style="float: right" href="{{ url(action('DiscussionController@show', ['discussion_id'=>$discussion->id, 'society_id'=>$society->id]))}}">Back to Discussion Page</a>
                     </div>
 
@@ -15,14 +15,12 @@
                     <!-- Table -->
                         <table class="table">
                             <tr>
-                                <th>Title</th>
                                 <th>Author</th>
                                 <th>Posted at</th>
                                 <th>Last Replied at</th>
                             </tr>
 
                             <tr>
-                                <td>{{$post->title}}</td>
                                 <td>{{$post->user_name}}</td>
                                 <td>{{$post->created_at}}</td>
                                 <td>{{$post->updated_at}}</td>
@@ -33,7 +31,6 @@
                                 <td>
                                     <a href="{{url($file_url)}}">Click here to download the appended file</a>
                                 </td>
-                                <td></td>
                                 <td></td>
                                 <td></td>
                             </tr>

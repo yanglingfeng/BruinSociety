@@ -81,4 +81,14 @@ class SocietyController extends Controller
         //return response()->json($societies);
     }
 
+    // List all members of a society
+    public function listSocietyMembers(Request $request)
+    {
+        $society_id = $request->input('society_id');
+        $society = \SocietyWrapper::getSocietyFromId($society_id);
+        $members = \SocietyWrapper::getAllSocietyMembers($society_id);
+        //return response()->json($members);
+        return view('viewAllMembers', ['society'=>$society, 'members'=>$members]);
+    }
+
 }

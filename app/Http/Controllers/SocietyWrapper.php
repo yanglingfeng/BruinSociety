@@ -1,6 +1,7 @@
 <?php
 
     use App\Society;
+    use App\UserSociety;
 
     // This class wraps up the society table by providing different methods of accessing the table.
     class SocietyWrapper
@@ -161,6 +162,19 @@
             //    $name = $society->name;
             //}
             return $name;
+        }
+
+        static public function getAllSocietyMembers($society_id)
+        {
+            $user_ids = App\UserSociety::where('society_id', $society_id)->get();
+            $users = array();
+            foreach ($user_ids as $user_id)
+            {
+                $id = $user_id->user_id;
+                $user = App\User::where('id', $id)->first();
+                array_push($users, $user);
+            }
+            return $users;
         }
 
     }

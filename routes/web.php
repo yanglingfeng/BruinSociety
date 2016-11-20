@@ -57,6 +57,8 @@ Route::post('create', 'SocietyController@createSociety');
 
 Route::get('delete', 'SocietyController@deleteSociety');
 
+Route::get('listMembers', 'SocietyController@listSocietyMembers');
+
 // Returns the view for the form of creating a society
 Route::get('createSociety', function () {
     return view('societyCreation');

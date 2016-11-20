@@ -33,7 +33,7 @@
                                                              ">Chat Room</a>
                             </li>
                                 </li>
-                                <li style="float: left;"><a href="{{ url('/listSocieties') }}"
+                                <li style="float: left;"><a href="{{ url(action('SocietyController@listSocietyMembers', ['society_id'=>$society->id])) }}"
                                                             style="display: inline-block;
                                                              color: black;
                                                              text-align: center;
