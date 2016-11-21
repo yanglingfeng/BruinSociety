@@ -3,6 +3,27 @@
 @section('content')
     <div class="container">
         <div class="row">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="panel panel-success">
+                            <div class="panel-heading" style="background-color: white; font-weight: bold;">Chat Room</div>
+
+                            <p style="padding-left: 10px; padding-top: 10px;">Enter Chat and press enter</p>
+                            <div style="padding-left: 10px;"><input id=input placeholder=you-chat-here /></div>
+
+                            <p style="padding-left: 10px; padding-top: 10px;">Chat Output</p>
+                            <div style="padding-left: 10px; padding-bottom: 10px" id=box></div>
+
+                        </div>
+                        @if(Auth::guest())
+                            <a href="{{ url('/login') }}" class="btn btn-info"> You need to login to see the list 😜😜 >></a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-success">
                     <div class="panel-heading" style="background-color: #F5F5DC; ">
@@ -214,6 +235,24 @@
                 @endif
             </div>
         </div>
+
+        <script src=http://cdn.pubnub.com/pubnub.min.js></script>
+        <script>(function(){
+                var userName = "<?php echo \Illuminate\Support\Facades\Auth::user()->name;?>";
+                var prefix = userName.concat(": ");
+                var pubnub = PUBNUB.init({publish_key:'demo',subscribe_key:'demo',ssl:true});
+                var box = PUBNUB.$('box'), input = PUBNUB.$('input'), channel = 'chat';
+                var msg = prefix.concat(input.value);
+                pubnub.subscribe({
+                    channel  : channel,
+                    callback : function(text) { box.innerHTML = (''+text).replace( /[<>]/g, '' ) + '<br>' + box.innerHTML }
+                });
+                PUBNUB.bind( 'keyup', input, function(e) {
+                    (e.keyCode || e.charCode) === 13 && pubnub.publish({
+                        channel : channel, message : prefix.concat(input.value), x : (input.value='')
+                    })
+                } )
+            })()</script>
     </div>
 @endsection
 
