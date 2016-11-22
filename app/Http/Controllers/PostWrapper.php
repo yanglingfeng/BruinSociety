@@ -28,6 +28,12 @@
             return $post;
         }
 
+        static public function getPostsForUser($user_id)
+        {
+            $posts = App\Post::where('user_id', $user_id)->get();
+            return $posts;
+        }
+
         //This function returns all posts belonging to a discussion
         static private function getPostFromDiscussion($discussion_id) {
             $posts = App\Post::where('discussion_id', $discussion_id)->get();

@@ -4,8 +4,8 @@
 
 
 <div class="container">
-
-        <div class="col-md-10 col-md-offset-1">
+    <div class="row">
+        <div class="col-md-9 col-md-offset-1">
             <div class="panel panel-success">
                 <div class="panel-heading" style="background-color: #F5F5DC; ">Societies You are in!</div>
                     @if(Auth::check())
@@ -44,13 +44,11 @@
                         <!-- Table -->
                         <table class="table" >
                             <tr>
-                                <th>Id</th>
                                 <th>Name</th>
                                 <th>Category</th>
                             </tr>
                             @foreach($societies as $society)
                             <tr>
-                                <td>{{$society->id}}</td>
                                 <td>{{$society->name}}</td>
                                 <td>{{$society->catagory}}</td>
                                 <td>
@@ -121,14 +119,52 @@
                                 </td>
                             </tr>
                             @endforeach
+
                         </table>
-                    @endif
+                        @endif
             </div>
             @if(Auth::guest())
-              <a href="{{ url('/login') }}" class="btn btn-info"> You need to login to see the list 😜😜 >></a>
+              <a href="{{ url('/login') }}" class="btn btn-info">Sign in to see your societies</a>
             @endif
+        </div>
+
+        <div class="col-md-9 col-md-offset-1">
+            <div class="panel panel-success">
+                <div class="panel-heading">Your Posts</div>
+
+            @if(Auth::check())
+                <!-- Table -->
+                    <table class="table">
+
+                        <tr>
+                            <th>Title</th>
+                            <th>Society</th>
+                            <th>Created at</th>
+                            <th>Last Replied at</th>
+                        </tr>
+                        @foreach($posts as $post)
+                            <tr>
+                                <td>
+                                    <a href="{{ url(action('PostController@show', ['post_id'=>$post['id'], 'discussion_id'=>$post['discussion_id'], 'society_id'=>$post['society_id']]))}}">{{$post['title']}}</a>
+                                </td>
+                                <td>{{$post['society_name']}}</td>
+                                <td>{{$post['created_at']}}</td>
+                                <td>{{$post['replied_at']}}</td>
+                            </tr>
+                        @endforeach
+
+                    </table>
+                @endif
+
+
+            </div>
+            @if(Auth::guest())
+                <a href="{{ url('/login') }}" class="btn btn-info"> You need to login to see the list 😜😜 >></a>
+            @endif
+        </div>
         </div>
     </div>
 </div>
+
 @endsection
 

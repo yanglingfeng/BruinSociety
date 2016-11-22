@@ -4,14 +4,14 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-4">
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1" style="position:relative; left: -3px; display: block">
+                    <div class="col-md-8" style="position:relative; left: 70px; display: block">
                         <div class="panel panel-success">
                             <div class="panel-heading" style="background-color: white; font-weight: bold;">Chat Room</div>
 
                             <p style="padding-left: 10px; padding-top: 10px;">Enter Chat and press enter</p>
-                            <div style="padding-left: 10px; "><input style="border-radius: 4px;" id=input placeholder=Enter-chat /></div>
+                            <div style="padding-left: 10px; "><input style="border-radius: 4px; width: 205px" id=input placeholder=Enter-chat /></div>
 
                             <p style="padding-left: 10px; padding-top: 10px;">Chat Output</p>
                             <div style="margin: 10px; padding-left: 10px; padding-bottom: 10px; padding-top:10px;border: 2px solid lightgray;
@@ -25,11 +25,11 @@
                 </div>
             </div>
 
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-success">
+            <div class="col-md-8" style="right: 70px;">
+                <div class="panel panel-success" >
                     <div class="panel-heading" style="background-color: #F5F5DC; ">
-                        List of All Discussions
-                        <a href="{{ url('/listSocieties') }}" style="float: right">See All Societies</a>
+                        {{$society->name}} Discussions
+                         <a href="{{ url('/listSocieties') }}" style="float: right">See All Societies</a>
                     </div>
                     @if(Auth::check())
                         <ul style=" list-style-type: none;
@@ -46,14 +46,7 @@
                                                              text-decoration: none;
                                                              ">Create a Discussion</a>
                             </li>
-                            <li style="float: left;"><a href="{{ url('/listSocieties') }}"
-                                                        style="display: inline-block;
-                                                             color: black;
-                                                             text-align: center;
-                                                             padding: 14px 16px;
-                                                             text-decoration: none;
-                                                             ">Chat Room</a>
-                            </li>
+
                                 </li>
                                 <li style="float: left;"><a href="{{ url(action('SocietyController@listSocietyMembers', ['society_id'=>$society->id])) }}"
                                                             style="display: inline-block;
@@ -90,17 +83,6 @@
                         @else
                         <!-- Table -->
                         <table class="table">
-                            <tr>
-                                <td style="font-weight: bold;">Discussions for {{$society->name}}</td>
-                            </tr>
-                            <tr>
-                                <th>Quarter</th>
-                                <th>Year</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-
-                            </tr>
                             @forelse($all_dis as $dis)
                                 <tr>
                                     <td>
@@ -179,13 +161,11 @@
                                     <a href="{{ url(action('PostController@postCreation', ['society_id'=>$society->id, 'discussion_id'=>$discussion->id]))}}" style="color:black;">Create a Post</a>
                                 </td>
                                 <td style="float: left;">
-                                    <a href="{{ url(action('DiscussionController@show', ['discussion_id'=>$discussion->id, 'society_id'=>$society->id, 'sort'=>'filesOnly']))}}" style="color:black;">Posts with Files Only</a>
-                                </td>
-                                <td style="float: left;">
                                     <select id="sortOptions">
                                         <option value="">Sort by</option>
                                         <option value="{{ url(action('DiscussionController@show', ['discussion_id'=>$discussion->id, 'society_id'=>$society->id]))}}" >Newest Post</option>
                                         <option value="{{ url(action('DiscussionController@show', ['discussion_id'=>$discussion->id, 'society_id'=>$society->id, 'sort'=>'updateDesc']))}}">Newest Reply</option>
+                                        <option value="{{ url(action('DiscussionController@show', ['discussion_id'=>$discussion->id, 'society_id'=>$society->id, 'sort'=>'filesOnly']))}}">Posts with Files</option>
                                     </select>
                                 </td>
                                 <script>
@@ -244,9 +224,16 @@
                 var pubnub = PUBNUB.init({publish_key:'demo',subscribe_key:'demo',ssl:true});
                 var box = PUBNUB.$('box'), input = PUBNUB.$('input'), channel = 'chat';
                 var msg = prefix.concat(input.value);
+                var msg_on_enter = userName.concat(" has entered the society");
                 pubnub.subscribe({
                     channel  : channel,
-                    callback : function(text) { box.innerHTML = (''+text).replace( /[<>]/g, '' ) + '<br>' + box.innerHTML }
+                    callback : function(text) { box.innerHTML = (''+text).replace( /[<>]/g, '' ) + '<br>' + box.innerHTML },
+                    connect : function(e) {
+                        pubnub.publish({
+                            channel : channel,
+                            message : msg_on_enter
+                        });
+                    }
                 });
                 PUBNUB.bind( 'keyup', input, function(e) {
                     (e.keyCode || e.charCode) === 13 && pubnub.publish({

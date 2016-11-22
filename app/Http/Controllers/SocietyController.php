@@ -9,6 +9,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 require_once ('SocietyWrapper.php');
+require_once ('PostWrapper.php');
+require_once ('DiscussionWrapper.php');
 
 class SocietyController extends Controller
 {
@@ -77,7 +79,23 @@ class SocietyController extends Controller
         $user_id = Auth::id();
         $society_ids = \SocietyWrapper::getSocietiesForUser($user_id);
         $societies = \SocietyWrapper::getSocietiesFromIds($society_ids);
-        return view('welcome', ['societies' => $societies]);
+        $user_posts = \PostWrapper::getPostsForUser($user_id);
+        $posts_with_society_info = array();
+        foreach ($user_posts as $post) {
+            $discussion_id = $post->discussion_id;
+            $discussion = \DiscussionWrapper::getDiscussionFromId($discussion_id);
+            $society_id = \DiscussionWrapper::getSocietyIdFromDiscussionId($discussion_id);
+            $society = \SocietyWrapper::getSocietyFromId($society_id);
+            $post_with_info = array('title'=>($post->title), 'id'=>($post->post_id),
+                'society_name'=>($society->name), 'created_at'=>($post['created_at']), 'replied_at'=>($post['updated_at'])
+                ,'society_id'=>$society_id, 'discussion_id'=>$discussion_id);
+            array_push($posts_with_society_info, $post_with_info);
+        }
+        usort($posts_with_society_info, function ($item1, $item2) {
+            if ($item1['replied_at'] == $item2['replied_at']) return 0;
+            return $item1['replied_at'] < $item2['replied_at'] ? 1 : -1;
+        });
+        return view('welcome', ['societies' => $societies, 'posts' => $posts_with_society_info]);
         //return response()->json($societies);
     }
 

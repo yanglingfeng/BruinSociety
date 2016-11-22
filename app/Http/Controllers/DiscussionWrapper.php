@@ -59,4 +59,8 @@
             $discussion = App\Discussion::where('id', $discussion_id)->first();
             return $discussion;
         }
+
+        static public function getSocietyIdFromDiscussionId($discussion_id) {
+            return App\Discussion::where('id', $discussion_id)->first()->society_id;
+        }
     }
