@@ -7,7 +7,7 @@
                 <div class="panel panel-success">
                     <div class="panel-heading" style="font-weight: bold;
                     background-color: white; ">
-                        <a href="{{ url(action('DiscussionController@show', ['discussion_id'=>$discussion->id, 'society_id'=>$society->id]))}}">Back to Discussion Page</a>
+                        <a href="{{ url(action('DiscussionController@show', ['discussion_id'=>$discussion->id, 'society_id'=>$society->id]))}}">Back to {{$society->name}}</a>
                     </div>
 
                 @if(Auth::check())
@@ -91,7 +91,7 @@
 
                             @foreach($comments as $comment)
                                 <tr>
-                                    <td style="width: 200px">
+                                    <td style="width: 350px">
                                         @php
                                             $content = $post->content;
                                             echo nl2br($comment->content);
