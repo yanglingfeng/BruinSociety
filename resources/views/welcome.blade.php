@@ -128,6 +128,7 @@
             @endif
         </div>
 
+        @if(Auth::check())
         <div class="col-md-9 col-md-offset-1">
             <div class="panel panel-success">
                 <div class="panel-heading">Your Posts</div>
@@ -159,11 +160,12 @@
 
             </div>
             @if(Auth::guest())
-                <a href="{{ url('/login') }}" class="btn btn-info"> You need to login to see the list 😜😜 >></a>
             @endif
         </div>
         </div>
     </div>
+@endif
+
 </div>
 
 @endsection
