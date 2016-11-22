@@ -72,7 +72,6 @@
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
-
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
@@ -87,17 +86,7 @@
 
         @yield('content')
 
-        <nav>
-            <div class="navbar navbar-default navbar-static-top" style="
-            position: relative;
-            margin-top: -180px;
-            clear:both;
-                                                                        right: 0;
-                                                                        bottom: 0;
-                                                                        left: 0;
-                                                                        padding: 1rem;
-                                                                        background-color: #efefef;
-                                                                        text-align: center;">
+        <div class="navbar navbar-default navbar-fixed-bottom">
 
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -109,12 +98,11 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                            <li><a href="{{ url('/register') }}">Contact Us</a></li>
+                            <li style="padding-right: 10px"><a href="{{ url('/register') }}">Contact Us</a></li>
 
                     </ul>
                 </div>
             </div>
-        </nav>
 
     </div>
 

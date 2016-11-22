@@ -29,7 +29,7 @@
                             @if($post->has_link==1)
                             <tr>
                                 <td>
-                                    <a href="{{url($file_url)}}">Click here to download the appended file</a>
+                                    <a href="{{url($file_url)}}">Click here to download the attached file</a>
                                 </td>
                                 <td></td>
                                 <td></td>

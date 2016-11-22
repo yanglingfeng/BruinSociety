@@ -4,17 +4,18 @@
     <div class="container">
         <div class="row">
 
-            <div class="container">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-10 col-md-offset-1" style="position:relative; left: -3px; display: block">
                         <div class="panel panel-success">
                             <div class="panel-heading" style="background-color: white; font-weight: bold;">Chat Room</div>
 
                             <p style="padding-left: 10px; padding-top: 10px;">Enter Chat and press enter</p>
-                            <div style="padding-left: 10px;"><input id=input placeholder=you-chat-here /></div>
+                            <div style="padding-left: 10px; "><input style="border-radius: 4px;" id=input placeholder=Enter-chat /></div>
 
                             <p style="padding-left: 10px; padding-top: 10px;">Chat Output</p>
-                            <div style="padding-left: 10px; padding-bottom: 10px" id=box></div>
+                            <div style="margin: 10px; padding-left: 10px; padding-bottom: 10px; padding-top:10px;border: 2px solid lightgray;
+                            border-radius: 4px;" id=box></div>
 
                         </div>
                         @if(Auth::guest())
