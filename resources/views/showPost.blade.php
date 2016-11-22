@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-3">
+        <div class="row" >
+            <div class="col-md-3" style="left: 150px; width: 230px">
                 <div class="panel panel-success">
                     <div class="panel-heading" style="font-weight: bold;
                     background-color: white; ">
@@ -53,6 +53,8 @@
                 @endif
             </div>
 
+            <div class="col-md-9 other" style="left: 130px; width: 930px">
+
             <div class="col-md-8">
                 <div class="panel panel-success">
                     <div class="panel-heading" style="background-color: white; font-weight: bold;">{{$post->title}}</div>
@@ -89,7 +91,12 @@
 
                             @foreach($comments as $comment)
                                 <tr>
-                                    <td>{{$comment->content}}</td>
+                                    <td style="width: 200px">
+                                        @php
+                                            $content = $post->content;
+                                            echo nl2br($comment->content);
+                                        @endphp
+                                    </td>
                                     <td>{{$comment->commenter_name}}</td>
                                     <td>{{$comment->created_at}}</td>
                                 </tr>
@@ -104,7 +111,7 @@
                 @endif
             </div>
 
-            <div class="col-md-8">
+            <div class="col-md-8" >
                 <div class="panel panel-default">
                     <div class="panel-heading" style="font-weight: bold;">Reply</div>
                     <div class="panel-body">
@@ -140,6 +147,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 @endsection
