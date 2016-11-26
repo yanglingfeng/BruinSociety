@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8000/" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>getEval</td>
+	<td>index = 0;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>while</td>
+	<td>index &lt; 30;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>getEval</td>
+	<td>index++;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=name</td>
+	<td>Andrew</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=university_year</td>
+	<td>Junior</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=university_id</td>
+	<td>123456789</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email</td>
+	<td>javascript{&quot;joe&quot; + Math.floor(Math.random()*11111) + &quot;@gmail.com&quot;;}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>andrew88</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password-confirm</td>
+	<td>andrew88</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Andrew</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

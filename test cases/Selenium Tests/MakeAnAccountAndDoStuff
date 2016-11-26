@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8000/" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>getEval</td>
+	<td>index = 0;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>while</td>
+	<td>index &lt; 10;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>getEval</td>
+	<td>index++;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=name</td>
+	<td>Andrew Lin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=university_year</td>
+	<td>Junior</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=university_id</td>
+	<td>204455444</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email</td>
+	<td>javascript{&quot;joebruin&quot; + index + &quot;@gmail.com&quot;;}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=university_id</td>
+	<td>11111111</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>andrew88</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password-confirm</td>
+	<td>andrew88</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Bruin Society</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create a Society</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=name</td>
+	<td>CS 1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=catagory</td>
+	<td>School</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=name</td>
+	<td>My test society</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create a Discussion</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=year</td>
+	<td>2016</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=quarter</td>
+	<td>label=Fall</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create a Post</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=title</td>
+	<td>Hi, how are you?</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=content</td>
+	<td>Hello </td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Back to My test society</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=View Members</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Back to My test society</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=input</td>
+	<td>Hi</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=input</td>
+	<td>Hello</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=input</td>
+	<td>How are you?</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=See All Societies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Bruin Society</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=See All Societies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//button[@type='submit'])[10]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//button[@type='submit'])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=test file</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=content</td>
+	<td> Thanks!</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Back to CS 130</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=See All Societies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//button[@type='submit'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=input</td>
+	<td>Hello again.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Bruin Society</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=exact:Hi, how are you?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Bruin Society</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Andrew Lin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>
