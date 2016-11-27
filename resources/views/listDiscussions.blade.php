@@ -54,7 +54,7 @@
                                                              text-align: center;
                                                              padding: 14px 16px;
                                                              text-decoration: none;
-                                                             ">View Members</a>
+                                                             ">Private Chat</a>
                                 </li>
                             @if($inSociety==0)
                                 <li style="float: left;"><a href="{{ url(action('SocietyController@join', ['society_id'=>$society->id])) }}"
