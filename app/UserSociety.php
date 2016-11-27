@@ -12,4 +12,5 @@ class UserSociety extends Model
      * @var string
      */
     protected $table = 'user_society';
+    public $timestamps = false;
 }
