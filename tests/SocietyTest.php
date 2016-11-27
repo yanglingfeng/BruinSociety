@@ -34,6 +34,11 @@ class SocietyTest extends TestCase
         'id' => 2002]);
         $this->seeInDatabase('societies', [
         'name' => 'baseball']);
+
+        $test = \SocietyWrapper::getSocietyFromId(2001);
+        $this->assertEquals('cs',$test->name);
+        $this->assertEquals('Academic',$test->catagory);
+
         \SocietyWrapper::deleteSociety(2001);
         \SocietyWrapper::deleteSociety(2002);
     }
